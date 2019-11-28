@@ -1,0 +1,16 @@
+---
+# [WARNING]: Could not find aptitude. Using apt-get instead fix
+- name: "APT: Install aptitude package"
+  apt:
+   name: aptitude
+   force_apt_get: yes
+- name: "Install required packages before installing snort"
+  package:
+    name: "{{ ossec_debian_pre_reqs }}"
+    state: present
+- name: "Extract the latest version of ossec into /tmp"
+  unarchive:
+    src: https://github.com/ossec/ossec-hids/archive/{{ ossec_version }}.tar.gz
+    dest: /tmp
+    creates: /tmp/ossec-hids-{{ ossec_version }}
+    remote_src: yes

@@ -1,0 +1,3 @@
+---
+ossec_debian_pre_reqs:
+  - build-essential
